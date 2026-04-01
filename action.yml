@@ -88,10 +88,19 @@ outputs:
 runs:
   using: "composite"
   steps:
+    - name: Compute node options
+      id: compute-node-options
+      shell: bash
+      run: |
+        if [[ "${{ inputs.push-to-registry }}" != "true" && -n "${NODE_OPTIONS}" ]]; then
+          echo "value=${NODE_OPTIONS} --max-http-header-size=32768" >> "$GITHUB_OUTPUT"
+        else
+          echo "value=--max-http-header-size=32768" >> "$GITHUB_OUTPUT"
+        fi
     - name: Attest
       id: attest
       env:
-        NODE_OPTIONS: "--max-http-header-size=32768"
+        NODE_OPTIONS: ${{ steps.compute-node-options.outputs.value }}
       uses: actions/attest@59d89421af93a897026c735860bf21b6eb4f7b26 # v4.1.0
       with:
         subject-path: ${{ inputs.subject-path }}
