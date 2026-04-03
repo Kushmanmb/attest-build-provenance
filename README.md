@@ -1,5 +1,9 @@
 # `actions/attest-build-provenance`
 
+[![Continuous Integration](https://github.com/actions/attest-build-provenance/actions/workflows/ci.yml/badge.svg)](https://github.com/actions/attest-build-provenance/actions/workflows/ci.yml)
+[![GitHub release](https://img.shields.io/github/v/release/actions/attest-build-provenance?logo=github)](https://github.com/actions/attest-build-provenance/releases)
+[![License](https://img.shields.io/github/license/actions/attest-build-provenance)](LICENSE)
+
 Generate signed build provenance attestations for workflow artifacts. Internally
 powered by the [@actions/attest][1] package.
 
